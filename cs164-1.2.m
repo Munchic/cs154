@@ -17,6 +17,9 @@ function deriv_2(elem)
     deriv_2 = [6 * elem, 2 0, 0]
 endfunction
 
+function add_zeros(x)
+    add_zeros = [x, 0, 0, 0, 0]
+endfunctino
 
 # task 2a
 function cub_spline(x, y)
@@ -27,16 +30,16 @@ function cub_spline(x, y)
 
     constr = [
         # s1
-        cube(x11);
-        cube(x12);
-        deriv_1(x12);
-        deriv_2(x12);
+        [cube(x11), 0, 0, 0, 0];
+        [cube(x12), 0, 0, 0, 0];
+        [deriv_1(x12), deriv_1(x12)];
+        [deriv_2(x12), deriv_2(x12)];
         
         # s2
-        cube(x22);
-        cube(x23);
-        deriv_1(x23)
-        deriv_2(x23)
+        [0, 0, 0, 0, cube(x22)];
+        [0, 0, 0, 0, cube(x23)];
+        [deriv_1(x23), deriv_1(x23)]
+        [deriv_2(x23), deriv_2(x23)]
         
     ]
     coefs = y * inv(constr)
