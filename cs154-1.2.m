@@ -32,15 +32,12 @@ function cub_spline(x, y)
         # s1
         [cube(x11), 0, 0, 0, 0];
         [cube(x12), 0, 0, 0, 0];
-        [deriv_1(x12), deriv_1(x12)];
-        [deriv_2(x12), deriv_2(x12)];
-        
-        # s2
         [0, 0, 0, 0, cube(x22)];
         [0, 0, 0, 0, cube(x23)];
-        [deriv_1(x23), deriv_1(x23)]
-        [deriv_2(x23), deriv_2(x23)]
-        
+        [deriv_1(x12), deriv_1(x12)];
+        [deriv_2(x12), deriv_2(x12)];
+        [deriv_2(x11), 0, 0, 0, 0];
+        [0, 0, 0, 0, deriv_2(x33)];
     ]
     coefs = y * inv(constr)
     
