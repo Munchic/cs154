@@ -69,14 +69,13 @@ endfunction
 function sol = newton_sys(x0)
     tol = 10^-3
     err = 3 * tol
+    sol = x0
 
     while (err > tol)
-        jacob = [f_x(x0), f_y(x0); g_x(x0), g_y(x0)]
-        f_val = [f(x0), g(x0)]
+        jacob = [f_x(sol), f_y(sol); g_x(sol), g_y(sol)]
+        f_val = [f(sol), g(sol)]
         delta_x = f_val * inv(jacob)
         err = sum(delta_x)
-        x0 = x0 - delta_x
+        sol = sol - delta_x
     endwhile
-    
-    sol = x0
 endfunction
